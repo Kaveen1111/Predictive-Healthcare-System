@@ -2,7 +2,7 @@ import streamlit as st
 from openai import OpenAI
 
 # Initialize OpenAI client
-client = OpenAI(api_key=st.secrets['OPENAI_API_KEY'])
+honey = OpenAI(api_key=st.secrets['OPENAI_API_KEY'])
 
 # Function to fetch and display health data
 def fetch_health_data():
@@ -24,7 +24,7 @@ def ai_prediction(health_data):
         return "Please provide your symptoms to predict health issues."
     
     # Example using OpenAI GPT-4 model for text input
-    response = client.chat.completions.create(
+    response = honey.chat.completions.create(
         model="gpt-4",
         messages=[
             {"role": "user", "content": f"My symptoms are: {health_data['symptoms']}. My medical history is: {health_data['medical_history']}"},
@@ -40,7 +40,7 @@ def mental_health_chatbot(conversation_history):
     messages = [{"role": role, "content": content} for role, content in conversation_history]
 
     # Generate response using OpenAI GPT-4 model
-    response = client.chat.completions.create(
+    response = honey.chat.completions.create(
         model="gpt-4",
         messages=messages,
         max_tokens=150,
